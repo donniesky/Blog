@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Android进程间通信 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android 进程间的通信在Android世界里，默认的每个APP是一个单独的进程。其实这样的描述是不严格的，因为我们要研究Android的进程间通信… Android里的四个基础组件，Activity、Service、Broadcast、ContentProvider.">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android进程间通信">
+<meta property="og:url" content="donnieSky.coding.me/Blog-Deploy-Space/2018/02/27/Android进程间通信/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Android 进程间的通信在Android世界里，默认的每个APP是一个单独的进程。其实这样的描述是不严格的，因为我们要研究Android的进程间通信… Android里的四个基础组件，Activity、Service、Broadcast、ContentProvider.">
+<meta property="og:updated_time" content="2018-02-27T03:18:15.322Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android进程间通信">
+<meta name="twitter:description" content="Android 进程间的通信在Android世界里，默认的每个APP是一个单独的进程。其实这样的描述是不严格的，因为我们要研究Android的进程间通信… Android里的四个基础组件，Activity、Service、Broadcast、ContentProvider.">
+  
+    <link rel="alternate" href="/Blog-Deploy-Space/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/Blog-Deploy-Space/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog-Deploy-Space/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog-Deploy-Space/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog-Deploy-Space/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog-Deploy-Space/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="donnieSky.coding.me/Blog-Deploy-Space"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Android进程间通信" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog-Deploy-Space/2018/02/27/Android进程间通信/" class="article-date">
+  <time datetime="2018-02-27T03:14:13.000Z" itemprop="datePublished">2018-02-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android进程间通信
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Android-进程间的通信"><a href="#Android-进程间的通信" class="headerlink" title="Android 进程间的通信"></a>Android 进程间的通信</h2><p>在Android世界里，默认的每个APP是一个单独的进程。其实这样的描述是不严格的，因为我们要研究<br>Android的进程间通信…</p>
+<p>Android里的四个基础组件，<code>Activity</code>、<code>Service</code>、<code>Broadcast</code>、<code>ContentProvider</code>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="donnieSky.coding.me/Blog-Deploy-Space/2018/02/27/Android进程间通信/" data-id="cje54zf580000q8sia5xh40tg" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog-Deploy-Space/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Blog-Deploy-Space/2018/02/27/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Blog-Deploy-Space/tags/Android/">Android</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog-Deploy-Space/tags/Android/" style="font-size: 10px;">Android</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog-Deploy-Space/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog-Deploy-Space/2018/02/27/Android进程间通信/">Android进程间通信</a>
+          </li>
+        
+          <li>
+            <a href="/Blog-Deploy-Space/2018/02/27/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog-Deploy-Space/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog-Deploy-Space/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/Blog-Deploy-Space/fancybox/jquery.fancybox.css">
+  <script src="/Blog-Deploy-Space/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/Blog-Deploy-Space/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
