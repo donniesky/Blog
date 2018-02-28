@@ -138,27 +138,30 @@
 
 
   
-  <meta name="keywords" content="donnieSky, Blog, Android, React-Native, Kotlin, @donniesky" />
+  <meta name="keywords" content="DiffUtil,RxJava2,RecyclerView," />
 
 
-<meta name="description" content="Be confident, not arrogant.">
-<meta name="keywords" content="donnieSky, Blog, Android, React-Native, Kotlin, @donniesky">
-<meta property="og:type" content="website">
-<meta property="og:title" content="DonnieSky">
-<meta property="og:url" content="donniesky.me/Blog/index.html">
+<meta name="description" content="翻译原文链接 DiffUtil工具类已经出来很久了，今天就来熟悉一下DiffUtil。使用DiffUtil只需要实现一个回调，该回调会将新的数据与就得数据进行比较，然后再讲比较后的结果传给Adapter适配器上，实现如下：123456789101112131415161718192021222324252627282930public class MyCallback extends DiffUt">
+<meta name="keywords" content="DiffUtil,RxJava2,RecyclerView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxJava和DiffUtil的组合使用">
+<meta property="og:url" content="donniesky.me/Blog/2018/02/28/Use-DiffUtil-with-RxJava/index.html">
 <meta property="og:site_name" content="DonnieSky">
-<meta property="og:description" content="Be confident, not arrogant.">
+<meta property="og:description" content="翻译原文链接 DiffUtil工具类已经出来很久了，今天就来熟悉一下DiffUtil。使用DiffUtil只需要实现一个回调，该回调会将新的数据与就得数据进行比较，然后再讲比较后的结果传给Adapter适配器上，实现如下：123456789101112131415161718192021222324252627282930public class MyCallback extends DiffUt">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/8588940/29812063-05ac3598-8cd8-11e7-9aee-9d83455e9782.gif">
+<meta property="og:updated_time" content="2018-02-28T09:26:36.793Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DonnieSky">
-<meta name="twitter:description" content="Be confident, not arrogant.">
+<meta name="twitter:title" content="RxJava和DiffUtil的组合使用">
+<meta name="twitter:description" content="翻译原文链接 DiffUtil工具类已经出来很久了，今天就来熟悉一下DiffUtil。使用DiffUtil只需要实现一个回调，该回调会将新的数据与就得数据进行比较，然后再讲比较后的结果传给Adapter适配器上，实现如下：123456789101112131415161718192021222324252627282930public class MyCallback extends DiffUt">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/8588940/29812063-05ac3598-8cd8-11e7-9aee-9d83455e9782.gif">
 
 
 
 
 
 
-  <link rel="canonical" href="donniesky.me/Blog/"/>
+  <link rel="canonical" href="donniesky.me/Blog/2018/02/28/Use-DiffUtil-with-RxJava/"/>
 
 
 
@@ -167,7 +170,7 @@
     sidebar: "",
   };
 </script>
-  <title>DonnieSky</title>
+  <title>RxJava和DiffUtil的组合使用 | DonnieSky</title>
   
 
 
@@ -223,8 +226,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -350,9 +352,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -384,9 +386,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Blog/2018/02/28/Use-DiffUtil-with-RxJava/" itemprop="url">RxJava和DiffUtil的组合使用</a></h2>
+          <h2 class="post-title" itemprop="name headline">RxJava和DiffUtil的组合使用</h2>
         
 
         <div class="post-meta">
@@ -471,9 +471,7 @@
       
 
       
-        
-          
-            <p><a href="https://hellsoft.se/a-nice-combination-of-rxjava-and-diffutil-fe3807186012" target="_blank" rel="noopener">翻译原文链接</a></p>
+        <p><a href="https://hellsoft.se/a-nice-combination-of-rxjava-and-diffutil-fe3807186012" target="_blank" rel="noopener">翻译原文链接</a></p>
 <p><code>DiffUtil</code>工具类已经出来很久了，今天就来熟悉一下<code>DiffUtil</code>。使用<code>DiffUtil</code>只需要实现一个回调，该回调会将新的数据与就得数据进行比较，然后再讲比较后的结果传给<code>Adapter</code>适配器上，实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCallback</span> <span class="keyword">extends</span> <span class="title">DiffUtil</span>.<span class="title">Callback</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Thing&gt; mOldList;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Thing&gt; mNewList;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OverDiffCallback</span><span class="params">(List&lt;Thing&gt; oldList, List&lt;Thing&gt; newList)</span> </span>&#123;</span><br><span class="line">        mOldList = oldList;</span><br><span class="line">        mNewList = newList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOldListSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mOldList != <span class="keyword">null</span> ? mOldList.size() : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getNewListSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mNewList != <span class="keyword">null</span> ? mNewList.size() : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">areItemsTheSame</span><span class="params">(<span class="keyword">int</span> oldItemPosition, <span class="keyword">int</span> newItemPosition)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mNewList.get(newItemPosition).getId().equals(mOldList.get(oldItemPosition).getId());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">areContentsTheSame</span><span class="params">(<span class="keyword">int</span> oldItemPosition, <span class="keyword">int</span> newItemPosition)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mNewList.get(newItemPosition).equals(mOldList.get(oldItemPosition));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>通过<code>DiffUtil.calculateDiff</code>比较后的DiffResult对象，将更改后的数据分配给<code>RecyclerView</code>的适配器：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DiffResult diffResult = DiffUtil.calculateDiff(<span class="keyword">new</span> MyDiffCallback(current, next), <span class="keyword">true</span>);</span><br><span class="line">diffResult.dispatchUpdatesTo(adapter);</span><br></pre></td></tr></table></figure></p>
 <p>但是，使用它也是很有挑战性的，当我们的数据量特别大的时候或者我们在对比数据比较复杂的时候，这时我们就要避免在主线程上使用<code>DiffUtil</code>，当然解决方案就可以将方法移动到后台线程中进行。</p>
@@ -488,518 +486,104 @@
 <p>大功告成！配合使用<code>RxJava</code>我们没必要考虑适配器保存的当前数据的任何同步和并发，可以观看一下示例演示：<br><img src="https://user-images.githubusercontent.com/8588940/29812063-05ac3598-8cd8-11e7-9aee-9d83455e9782.gif" alt="zpn"></p>
 <h1 id="如果数据来的太快？"><a href="#如果数据来的太快？" class="headerlink" title="如果数据来的太快？"></a>如果数据来的太快？</h1><p>如果事件的发射速度比我们处理的要更快，如果<code>DiffUtil</code>计算比较数据需要几秒时间，并且我们得到的数据量比这些数据快。这时候我们就需要考虑<code>RxJava</code>的背压（back pressure），使用<code>RxJava2</code>我们可以使用<code>Flowable</code>而不是<code>Observable</code>，并可以选择配置适用于我们情况的背压策略。</p>
 
-          
-        
       
     </div>
 
     
+      
 
-    
-    
-    
 
     
 
     
+    
+    
 
     
 
-    <footer class="post-footer">
-      
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>来不及解释了</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
-      
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/Blog/images/wechatpay.jpg" alt="donnieSky 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
 
-      
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/Blog/images/alipay.jpg" alt="donnieSky 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
 
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    
+
   </div>
-  
-  
-  
-  </article>
+</div>
 
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="donniesky.me/Blog/Blog/2018/02/27/Java创建线程的三种方式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="donnieSky">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DonnieSky">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Blog/2018/02/27/Java创建线程的三种方式/" itemprop="url">Java创建线程的三种方式</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T06:45:57+08:00">2018-02-28</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Blog/categories/Java基础/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Blog/categories/Java基础/Java并发/" itemprop="url" rel="index"><span itemprop="name">Java并发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/Blog/2018/02/27/Java创建线程的三种方式/" class="leancloud_visitors" data-flag-title="Java创建线程的三种方式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+      </div>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="继承Thread类创建线程类"><a href="#继承Thread类创建线程类" class="headerlink" title="继承Thread类创建线程类"></a>继承<code>Thread</code>类创建线程类</h1><ol>
-<li><p>定义<code>Thread</code>类的子类，并重写该类的<code>run</code>方法，该<code>run</code>方法的方法体就代表着线程要执行的任务，<br>因此把<code>run()</code>方法称为方法体。</p>
-</li>
-<li><p>创建<code>Thread</code>子类的实例对象，即创建线程对象。</p>
-</li>
-<li><p>调用线程对象的<code>start()</code>方法来启动线程。</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"start run ..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动线程</span></span><br><span class="line"><span class="keyword">new</span> FirstThread().start();</span><br></pre></td></tr></table></figure>
-<h1 id="实现Runnable接口创建线程类"><a href="#实现Runnable接口创建线程类" class="headerlink" title="实现Runnable接口创建线程类"></a>实现<code>Runnable</code>接口创建线程类</h1><ol>
-<li><p>定义<code>Runnable</code>接口的实现类，并实现<code>run()</code>方法，该<code>run</code>方法同样为线程执行体。</p>
-</li>
-<li><p>创建<code>Runnable</code>实现类的实例对象，并将该对象作为<code>Thread</code>的<code>target</code>来创建线程对象。</p>
-</li>
-<li><p>调用线程对象的<code>start()</code>方法来启动该线程。</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"start run ..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动线程</span></span><br><span class="line">SecondThread secondThread = <span class="keyword">new</span> SecondThread();</span><br><span class="line"><span class="keyword">new</span> Thread(secondThread).start();</span><br></pre></td></tr></table></figure>
-<h1 id="通过Callable和Future创建线程"><a href="#通过Callable和Future创建线程" class="headerlink" title="通过Callable和Future创建线程"></a>通过<code>Callable</code>和<code>Future</code>创建线程</h1><ol>
-<li><p>创建<code>Callable</code>接口的实现类，并实现<code>call()</code>方法，该<code>call()</code>方法将作为线程的执行体，并且有返回值。</p>
-</li>
-<li><p>创建<code>Callable</code>实现类的实例，使用<code>FutureTask</code>类来包装<code>Callable</code>对象，该<code>FutureTask</code>对象封装了该<br><code>Callable</code>对象的<code>call()</code>方法的返回值。</p>
-</li>
-<li><p>使用<code>FutureTask</code>对象作为线程对象的<code>target</code>并启动线程。</p>
-</li>
-<li><p>调用<code>FutureTask</code>对象的<code>get()</code>方法来获得子线程执行结束后的返回值，调用<code>get()</code>方法回阻塞线程。</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThirdThread</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"start call ..."</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"you get string ..."</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动线程</span></span><br><span class="line">ThirdThread thirdThread = <span class="keyword">new</span> ThirdThread();</span><br><span class="line">FutureTask&lt;String&gt; task = <span class="keyword">new</span> FutureTask&lt;&gt;(thirdThread);</span><br><span class="line"><span class="keyword">new</span> Thread(task).start();</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    System.out.println(task.get());</span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li><p>实现<code>Runnable</code>、<code>Callable</code>接口创建多线程：</p>
-<ul>
-<li><p>优势：实现类还可继承其他类；</p>
-<pre><code>多线程可以共享一个`target`对象，适合多个线程来处理同一份资源的情况，
-从而可以将CPU、代码和数据分开，形成清晰的模型，较好的体现了面向对象的思想。
-</code></pre></li>
-<li><p>劣势：编程稍微复杂，需要使用<code>Thread.currentThread()</code>方法获取当前线程。</p>
-</li>
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>donnieSky</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="donniesky.me/Blog/2018/02/28/Use-DiffUtil-with-RxJava/" title="RxJava和DiffUtil的组合使用">donniesky.me/Blog/2018/02/28/Use-DiffUtil-with-RxJava/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
 </ul>
-</li>
-<li><p>继承<code>Thread</code>类的方式创建多线程：</p>
-<ul>
-<li>优势：代码简单，使用<code>this</code>即可获取当前线程。</li>
-<li>劣势: 无法再继承其他父类。</li>
-</ul>
-</li>
-</ol>
 
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
+      </div>
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="donniesky.me/Blog/Blog/2018/02/26/Android进程间通信/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="donnieSky">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DonnieSky">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Blog/2018/02/26/Android进程间通信/" itemprop="url">Android进程间通信</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T03:14:13+08:00">2018-02-27</time>
-            
-
-            
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/Blog/tags/DiffUtil/" rel="tag"># DiffUtil</a>
           
-            
+            <a href="/Blog/tags/RxJava2/" rel="tag"># RxJava2</a>
           
-
+            <a href="/Blog/tags/RecyclerView/" rel="tag"># RecyclerView</a>
           
-          
-             <span id="/Blog/2018/02/26/Android进程间通信/" class="leancloud_visitors" data-flag-title="Android进程间通信">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Android-进程间的通信"><a href="#Android-进程间的通信" class="headerlink" title="Android 进程间的通信"></a>Android 进程间的通信</h2><p>在Android世界里，默认的每个APP是一个单独的进程。其实这样的描述是不严格的，因为我们要研究<br>Android的进程间通信…</p>
-<p>Android里的四个基础组件，<code>Activity</code>、<code>Service</code>、<code>Broadcast</code>、<code>ContentProvider</code>.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="donniesky.me/Blog/Blog/2018/02/26/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="donnieSky">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/Blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DonnieSky">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Blog/2018/02/26/hello-world/" itemprop="url">Hello World</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T01:14:13+08:00">2018-02-27</time>
+              <a href="/Blog/2018/02/27/Java创建线程的三种方式/" rel="next" title="Java创建线程的三种方式">
+                <i class="fa fa-chevron-left"></i> Java创建线程的三种方式
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/Blog/2018/02/26/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1009,14 +593,19 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -1037,8 +626,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1175,6 +773,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#scan"><span class="nav-number">1.</span> <span class="nav-text">scan()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如果数据来的太快？"><span class="nav-number"></span> <span class="nav-text">如果数据来的太快？</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1345,6 +959,10 @@
 
 
   
+  <script type="text/javascript" src="/Blog/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/Blog/js/src/post-details.js?v=6.0.4"></script>
+
+
 
   
 
