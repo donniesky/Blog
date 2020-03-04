@@ -48,7 +48,7 @@ jobs:
       run: |
         mv main/public gh-pages
         cp -r gh-pages-pre/.git gh-pages/
-        cp gh-pages-pre/CNAME gh-pages/
+        cp main/CNAME gh-pages/
         cd gh-pages
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Action"
