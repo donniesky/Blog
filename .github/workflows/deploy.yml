@@ -20,7 +20,7 @@ jobs:
         git submodule sync --recursive
         git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
     - name: Setup node and yarn
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: 12.x
     - name: Install hexo dependencies
