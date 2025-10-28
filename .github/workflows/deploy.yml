@@ -22,7 +22,7 @@ jobs:
     - name: Setup node and yarn
       uses: actions/setup-node@v3
       with:
-        node-version: 12.x
+        node-version: 24.x
     - name: Install hexo dependencies
       run: |
         cd main
